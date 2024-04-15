@@ -31,6 +31,11 @@ public class LoginPage extends BasePage{
         fieldPassword.sendKeys(user.getPassword());
         return this;
     }
+
+    /**
+     *
+     * @return feedPage
+     */
     public FeedPage clickBtnSubmitPositive(){
         btnSubmit.click();
         return new FeedPage(driver);

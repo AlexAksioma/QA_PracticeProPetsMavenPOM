@@ -8,6 +8,11 @@ import java.util.Properties;
 public class PropertiesReader {
     private static final String PROPERTIES_PATH = "src/main/resources/properties.properties";
 
+    /**
+     *
+     * @param key from file .properties
+     * @return value from file .properties
+     */
     public static String getProperty(String key){
         Properties properties = new Properties();
         try {
