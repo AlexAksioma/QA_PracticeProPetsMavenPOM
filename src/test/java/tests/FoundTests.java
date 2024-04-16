@@ -22,12 +22,12 @@ public class FoundTests extends BaseTest {
         homePage.clickBtnLoginHeader()
                 .typeLoginForm(user)
                 .clickBtnSubmitPositive();
-        BasePage.openLeftMenuItem(LeftMenuItems.Found);
+        //BasePage.openLeftMenuItem(LeftMenuItems.Found);
     }
 
     @Test
     public void foundTest(){
-        FoundPage foundPage = new FoundPage(getDriver());
+        FoundPage foundPage = BasePage.openLeftMenuItem(LeftMenuItems.Found);
         foundPage.clickBtnIFoundPet();
     }
 }
