@@ -1,6 +1,7 @@
 package pages;
 
 import helpers.LeftMenuItems;
+import lombok.extern.java.Log;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,28 +27,29 @@ public class BasePage {
     }
 
     public static <T extends BasePage> T openLeftMenuItem(LeftMenuItems leftMenuItems) {
-        //div[text()='Favorites']
-        String xPathMenuItem = "//div[text()='" + leftMenuItems + "']";
-        By elementMenuItemBy = By.xpath(xPathMenuItem);
         try {
             WebElement elementMenuItem = new WebDriverWait(driver, Duration.ofSeconds(5))
-                    .until(ExpectedConditions.elementToBeClickable(elementMenuItemBy));
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath(leftMenuItems.getLocator())));
             elementMenuItem.click();
         } catch (TimeoutException e) {
             e.printStackTrace();
         }
 
         switch (leftMenuItems) {
-            case Home:
+            case HOME:
                 return (T) new FeedPage(driver);
-            case Lost:
+            case LOST:
                 return (T) new LostPage(driver);
-            case Found:
+            case FOUND:
                 return (T) new FoundPage(driver);
-            case Services:
+            case SERVICES:
                 return (T) new ServicesPage(driver);
-            case Favorites:
+            case FAVORITES:
                 return (T) new FavoritesPage(driver);
+            case PROFILE:
+                return (T) new ProfilePage(driver);
+            case LOGOUT:
+                return (T) new LoginPage(driver);
             default:
                 throw new IllegalArgumentException("invalid parametr leftMenuItem");
         }

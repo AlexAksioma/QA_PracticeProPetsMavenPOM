@@ -1,6 +1,7 @@
 package pages;
 
 import dto.UserDTO;
+import helpers.PropertiesReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +15,19 @@ public class LoginPage extends BasePage{
     WebElement fieldPassword;
     @FindBy(xpath = "//button[text()='Submit']")
     WebElement btnSubmit;
+    @FindBy(xpath = "//div[@data-test-id='header-container']/button")
+    WebElement btnLoginHeader;
 
+    String url = PropertiesReader.getProperty("baseurl");
     public LoginPage(WebDriver driver){
         setDriver(driver);
-        //driver.get("https");
+        driver.get(url);
         PageFactory.initElements(new AjaxElementLocatorFactory(driver,10), this);
+    }
+
+    public LoginPage clickBtnLoginHeader() {
+        btnLoginHeader.click();
+        return this;
     }
 
     /**
@@ -40,4 +49,12 @@ public class LoginPage extends BasePage{
         btnSubmit.click();
         return new FeedPage(driver);
     }
+
+
+
+
+
+
+
+
 }

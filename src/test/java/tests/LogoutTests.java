@@ -7,11 +7,10 @@ import helpers.PropertiesReader;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.BasePage;
-import pages.FoundPage;
+import pages.FeedPage;
 import pages.LoginPage;
 
-public class FoundTests extends BaseTest {
-
+public class LogoutTests extends BaseTest {
     @BeforeMethod
     public void loginWithPropertiesGoToFoundPage(){
         UserDTO user = UserDTO.builder()
@@ -22,12 +21,11 @@ public class FoundTests extends BaseTest {
         loginPage.clickBtnLoginHeader()
                 .typeLoginForm(user)
                 .clickBtnSubmitPositive();
-        //BasePage.openLeftMenuItem(LeftMenuItems.Found);
-    }
 
+    }
     @Test
-    public void foundTest(){
-        FoundPage foundPage = BasePage.openLeftMenuItem(LeftMenuItems.FOUND);
-        //foundPage.clickBtnIFoundPet();
+    public void logoutTest(){
+        FeedPage feedPage = new FeedPage(getDriver());
+        BasePage.openLeftMenuItem(LeftMenuItems.LOGOUT);
     }
 }
