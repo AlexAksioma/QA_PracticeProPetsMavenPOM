@@ -3,6 +3,7 @@ package pages;
 import helpers.LeftMenuItems;
 import lombok.extern.java.Log;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,6 +16,19 @@ public class BasePage {
 
     public static void setDriver(WebDriver wd) {
         driver = wd;
+    }
+    @FindBy(xpath = "//div[@data-test-id='account-header-lost-found']/button[2]")
+    WebElement btnIFoundPetOnHeader;
+    @FindBy(xpath = "//div[@data-test-id='account-header-lost-found']/button[1]")
+    WebElement btnILostMyPetOnHeader;
+
+    public CreatorPage clickBtnIFoundPet() {
+        btnIFoundPetOnHeader.click();
+        return new CreatorPage(driver);
+    }
+    public CreatorPage clickBtnILostMyPet() {
+        btnILostMyPetOnHeader.click();
+        return new CreatorPage(driver);
     }
 
     public static boolean isElementDisplayed(WebElement element) {

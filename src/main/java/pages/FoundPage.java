@@ -12,12 +12,5 @@ public class FoundPage extends BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
 
-    @FindBy(xpath = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text " +
-            "MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-" +
-            "root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-cmc5zk']")
-    WebElement btnIFoundPet;
 
-    public void clickBtnIFoundPet() {
-        btnIFoundPet.click();
-    }
 }
