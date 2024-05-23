@@ -4,6 +4,7 @@ import dto.AnimalDTO;
 import helpers.PetSex;
 import helpers.PetType;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,16 @@ public class CreatorPage extends BasePage{
     WebElement fieldColor;
     @FindBy(xpath = "//textarea[@placeholder='Blue collar with stars, no left ear, damaged tail.']")
     WebElement fieldDistinctiveFeatures;
+    @FindBy(xpath = "//input[@id='mui-9']")
+    WebElement fieldDescription;
+    @FindBy(xpath = "//button[text()='Add']")
+    WebElement btnAddDescription;
+    @FindBy(xpath = "//input[@placeholder='Enter address']")
+    WebElement fieldLocation;
+    @FindBy(xpath = "//input[@name='Phone']")
+    WebElement fieldContacts;
+    @FindBy(xpath = "//button[text()='Publish']")
+    WebElement btnPublish;
 
     public CreatorPage typeLostFoundForm(AnimalDTO animal){
         createFieldType(animal.getType());
@@ -33,7 +44,21 @@ public class CreatorPage extends BasePage{
         fieldBreed.sendKeys(animal.getBreed());
         fieldColor.sendKeys(animal.getColor());
         fieldDistinctiveFeatures.sendKeys(animal.getDistinctive_features());
+
+        fieldDescription.sendKeys(animal.getDescription());
+        btnAddDescription.click();
+
+        fieldLocation.sendKeys(animal.getLocation());
+        fieldLocation.sendKeys(Keys.ENTER);
+
+        fieldContacts.click();
+        fieldContacts.sendKeys(animal.getContacts());
+
         return this;
+    }
+    public PreviewPage clickBtnPublishPositive(){
+        btnPublish.click();
+        return new PreviewPage(driver);
     }
 
     private void createFieldType(PetType type) {  ////li[text()='Rodent']

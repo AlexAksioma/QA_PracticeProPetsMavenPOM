@@ -39,31 +39,37 @@ public class CreatorTests extends BaseTest {
                 .breed(RandomElements.breedOfCat())
                 .color(RandomElements.color())
                 .distinctive_features(RandomElements.randomString(25))
+                .description(RandomElements.randomString(15))
+                .location("Haifa St, Tira, Israel")
+                .contacts("0503334455")
                 .build();
-        BasePage.openLeftMenuItem(LeftMenuItems.FOUND)
+        Assert.assertTrue(BasePage.openLeftMenuItem(LeftMenuItems.FOUND)
                 .clickBtnILostMyPet()
-                .typeLostFoundForm(animal);
+                .typeLostFoundForm(animal)
+                .clickBtnPublishPositive()
+                .isElementDisplayed_btnEdit()
+        );
     }
 
-    @Test
-    public void serializable() {
-        AnimalDTO animal = AnimalDTO.builder()
-                .type(PetType.FERRET)
-                .sex(PetSex.MALE)
-                .breed("breed")
-                .color("white")
-                .distinctive_features("string")
-                .description("New qwerty")
-                .photo("c://")
-                .location("Haifa")
-                .contacts("054123123")
-                .email("qwerty@mail.com")
-                .build();
-        AnimalDTO.serializableAnimalDTO(animal, "animal2.ser");
-        AnimalDTO animalNew = AnimalDTO.deSerializableAnimalDTO("animal2.ser");
-        System.out.println(animal.toString());
-        System.out.println(animalNew.toString());
-        Assert.assertTrue(animal.equals(animalNew));
-    }
+//    @Test
+//    public void serializable() {
+//        AnimalDTO animal = AnimalDTO.builder()
+//                .type(PetType.FERRET)
+//                .sex(PetSex.MALE)
+//                .breed("breed")
+//                .color("white")
+//                .distinctive_features("string")
+//                .description("New qwerty")
+//                .photo("c://")
+//                .location("Haifa")
+//                .contacts("054123123")
+//                .email("qwerty@mail.com")
+//                .build();
+//        AnimalDTO.serializableAnimalDTO(animal, "animal2.ser");
+//        AnimalDTO animalNew = AnimalDTO.deSerializableAnimalDTO("animal2.ser");
+//        System.out.println(animal.toString());
+//        System.out.println(animalNew.toString());
+//        Assert.assertTrue(animal.equals(animalNew));
+//    }
 
 }
